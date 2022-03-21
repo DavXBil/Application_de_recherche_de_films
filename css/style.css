@@ -1,0 +1,83 @@
+/*--------------------------------MOBILE FIRST--------------------------------------------*/
+
+* {
+        box-sizing: border-box;
+        outline: none;
+}
+
+
+html {
+        font-size: 62.5%;
+}
+
+body {
+        margin: 0;
+        background-color: rgb(68, 68, 68);
+}
+
+img{
+        max-width: 100%;
+}
+
+a {
+        text-decoration: none;
+        color: inherit;
+}
+
+
+header {
+        background-color: rgba(122, 122, 122, 0.212);
+        font-size: 1.7rem;
+        height: 100px;
+        position: sticky;
+        top: 0;
+}
+
+header nav {
+        color: #FFFF;
+}
+
+header #settings_container {
+        position: fixed;
+}
+
+#settings_bar {
+        text-align: right;
+}
+
+#settings_bar{
+        position: sticky;
+        top: 0;
+}
+
+main {
+        margin-top: 25px;
+}
+
+#search_form {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+}
+
+#search_form button {
+        width: 30%;
+        margin: 5px auto 0;
+}
+
+#modal {
+        display: none;
+}
+
+#movies {
+        width: 90%;
+        margin: 20px auto 0;
+}
+
+#movies .movie_thumbnail{
+        margin: auto;
+        width: 80%;  
+}
+
