@@ -188,6 +188,10 @@ main {
                 width: 300px;
         }
 
+        .movie_thumbnail img {
+                height: 460px;
+        }
+
         #search_form {
                 width: 20%; 
         }
@@ -234,6 +238,11 @@ main {
         #movie_card #ratings {
                 width: 70%;
                 margin: 0 auto 30px;
+        }
+
+        #paging {
+                width: 80%;
+                margin: auto;
         }
 
         #paging a:hover {
