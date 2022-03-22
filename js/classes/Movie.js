@@ -6,6 +6,7 @@ class Movie {
                 this.key = "f6e256e1"
         }
 
+        //search movies by title and displays it in the DOM 
         displayMovies(value, moviesSection, page) {
 
                 document.querySelector('#error-msg').classList.add("hidden")
@@ -14,14 +15,14 @@ class Movie {
 
                 if (value.length >= 3) {
                         
-                        
-                        fetch(`http://www.omdbapi.com/?s=${value}&type=movie&page=${page}&apikey=${this.key}`)
+                        let query = `http://www.omdbapi.com/?s=${value}&type=movie&page=${page}&apikey=${this.key}`
+                        fetch(query)
                         .then(function(response) {
                                 if (response.ok) {
                                         
                                         response.json().then(function(data) {
                                                 
-                                                
+                                                sessionStorage.setItem("value", value)
                                                 let pagesNumber = Math.ceil(data['totalResults'] / 10)
                                                 
                                                 
@@ -70,6 +71,7 @@ class Movie {
                                         let pagingSection = document.querySelector("#paging")
                                         
                                         pagingSection.innerHTML = paging
+                                        
                                 })               
                                 
                         }  
@@ -80,14 +82,12 @@ class Movie {
                 
         }
 
-
+        //search a movie by its ID and display its card
         displayMovieDetail(value, movieSection) {
                 
                 let movieCard = ""
 
                 let poster
-
-
 
                 fetch(`http://www.omdbapi.com/?${value}&plot=full&apikey=${this.key}`)
                 .then(function(response) {
@@ -125,13 +125,9 @@ class Movie {
                                                 `
                                         movieSection.innerHTML = movieCard
                                 })     
-                
-
         
                         }  
                 })
         }
-
-
         
 }

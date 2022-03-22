@@ -12,6 +12,16 @@ let page = 1
 let movie = new Movie()
 
 
+window.onload = function () {
+        let previousQuery = sessionStorage.getItem('value')
+
+        if (previousQuery) {
+                movie.displayMovies(previousQuery, moviesSection, page)
+        }
+        
+}
+
+
 searchButton.addEventListener('click', function() {
 
         movie.displayMovies(inputTitle.value, moviesSection, page)
