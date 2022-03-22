@@ -26,6 +26,10 @@ a {
         color: inherit;
 }
 
+.hidden {
+        display: none;
+}
+
 .underlined_and_bold {
         text-decoration: underline;
         font-weight: 700;

@@ -1,4 +1,3 @@
-
 export { Movie }
 
 class Movie {
@@ -9,22 +8,27 @@ class Movie {
 
         displayMovies(value, moviesSection, page) {
 
+                document.querySelector('#error-msg').classList.add("hidden")
+
                 let articles = ""
 
-                fetch(`http://www.omdbapi.com/?s=${value}&type=movie&page=${page}&apikey=${this.key}`)
-                .then(function(response) {
-                        if (response.ok) {
-
-                                response.json().then(function(data) {
-
+                if (value.length >= 3) {
+                        
+                        
+                        fetch(`http://www.omdbapi.com/?s=${value}&type=movie&page=${page}&apikey=${this.key}`)
+                        .then(function(response) {
+                                if (response.ok) {
                                         
-                                        let pagesNumber = Math.ceil(data['totalResults'] / 10)
-
-
+                                        response.json().then(function(data) {
+                                                
+                                                
+                                                let pagesNumber = Math.ceil(data['totalResults'] / 10)
+                                                
+                                                
                                         data['Search'].forEach(movie => {
-
+                                                
                                                 let poster
-
+                                                
                                                 if(movie["Poster"] == "N/A") {
                                                         poster = "./public/img/no_image.png"
                                                 } else {
@@ -32,22 +36,22 @@ class Movie {
                                                 }
                         
                                                 articles += `
-                                                        <article class="movie_thumbnail" i=${movie["imdbID"]}>
-                                                                <a href="./movie_card.html?i=${movie["imdbID"]}">
-                                                                        <figure>
-                                                                                <img src=${poster} alt="${movie["Title"]} poster"></img>
-                                                                                
-                                                                                <figcaption>${movie['Title']}</figcaption>
-                                                                        </figure>
-                        
-                                                                </a>
-                                                        </article>
+                                                <article class="movie_thumbnail" i=${movie["imdbID"]}>
+                                                <a href="./movie_card.html?i=${movie["imdbID"]}">
+                                                <figure>
+                                                <img src=${poster} alt="${movie["Title"]} poster"></img>
+                                                
+                                                <figcaption>${movie['Title']}</figcaption>
+                                                </figure>
+                                                
+                                                </a>
+                                                </article>
                                                 `                                        
                                         });
 
                                         let paging = ""
-
-
+                                        
+                                        
                                         if (page > 1) {
                                                 paging += `<a href="#" name=${value} id="pageprevious" class="paginglink">Précedent</a>`
                                         }
@@ -55,21 +59,24 @@ class Movie {
                                         for (let i = 1; i < pagesNumber; i++) {
                                                 paging += `<a href="#" name=${value} id=${i} class="paginglink">${i}</a>`                                                
                                         }
-
+                                        
                                         if (page < pagesNumber) {
                                                 paging += `<a href="#" name=${value} id="pagenext" class="paginglink">Suivant</a>`
                                         }
-
+                                        
                                         moviesSection.innerHTML = articles
-
-                                          
+                                        
+                                        
                                         let pagingSection = document.querySelector("#paging")
-
+                                        
                                         pagingSection.innerHTML = paging
                                 })               
-
+                                
                         }  
-                })
+                        })
+                } else {
+                        document.querySelector('#error-msg').classList.remove("hidden")
+                }
                 
         }
 
