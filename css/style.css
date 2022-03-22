@@ -1,4 +1,4 @@
-/*--------------------------------MOBILE FIRST--------------------------------------------*/
+/*---------------------------------------------------------MOBILE FIRST-------------------------------------------------------------------------*/
 
 * {
         box-sizing: border-box;
@@ -8,11 +8,13 @@
 
 html {
         font-size: 62.5%;
+        font-family: 'Roboto', sans-serif;
 }
 
 body {
         margin: 0;
-        background-color: rgb(68, 68, 68);
+        background-color: rgb(2, 27, 48);
+        color: #FFFF;
 }
 
 img{
@@ -24,35 +26,39 @@ a {
         color: inherit;
 }
 
+.underlined_and_bold {
+        text-decoration: underline;
+        font-weight: 700;
+}
+
 
 header {
-        background-color: rgba(122, 122, 122, 0.212);
+        background-color: rgba(36, 36, 36, 0.671);
         font-size: 1.7rem;
-        height: 100px;
         position: sticky;
         top: 0;
+        z-index: 99;
 }
 
 header nav {
-        color: #FFFF;
+        
+        display: flex;
+        justify-content: space-around;
+        font-size: 2.5rem;
 }
 
-header #settings_container {
-        position: fixed;
+header nav a:first-child {
+        flex-basis: 35%;
 }
 
-#settings_bar {
-        text-align: right;
-}
-
-#settings_bar{
-        position: sticky;
-        top: 0;
-}
 
 main {
         margin-top: 25px;
 }
+
+.movie_thumbnail figcaption, #paging a, #movie_card {
+        background: linear-gradient(0deg, rgb(2, 27, 48) 0%, rgba(28,27,27,1) 65%);
+} 
 
 #search_form {
         width: 80%;
@@ -63,8 +69,10 @@ main {
 }
 
 #search_form button {
-        width: 30%;
+        width: 60%;
         margin: 5px auto 0;
+
+        
 }
 
 #modal {
@@ -73,11 +81,165 @@ main {
 
 #movies {
         width: 90%;
-        margin: 20px auto 0;
+        margin: 35px auto 0;
 }
 
 #movies .movie_thumbnail{
-        margin: auto;
-        width: 80%;  
+        margin: 50px auto 50px;
 }
 
+.movie_thumbnail figure {
+        position: relative;
+        margin: 0;
+}
+
+.movie_thumbnail figcaption {
+        text-align: center;
+        font-size: 2rem;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+        padding: 13px;
+
+        width: 100%;
+}
+
+
+#paging {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 2rem;
+}
+
+#paging a {
+        margin:2px 0;
+        border: 1px solid rgb(68, 68, 68);
+
+        padding: 10px;
+}
+
+/*-------------------------MovieCard-----------------------------*/
+
+#movie_card {
+        font-size: 1.8rem;
+}
+
+#movie_card h2 {
+        text-align: center;
+        font-size: 2.6rem;
+}
+
+#movie_card #infos, #movie_card #synopsis {
+        width: 90%;
+        margin:auto;
+}
+
+#movie_card #ratings {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin-bottom: 55px;
+}
+
+#movie_card #ratings img {
+        width: 60px;
+}
+
+#movie_card #ratings p{
+        margin: 0;
+        font-size: 2.8rem;
+}
+
+/*------------------------------------------------DESKTOP-------------------------------------------------------------*/
+
+@media screen and (min-width:1025px) {
+
+        header {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 60px;
+        }
+
+        header nav {
+                flex-direction: column;
+                justify-content: space-around;
+                height: 100%;
+        }
+
+        header nav a:first-child {
+                flex-basis: 60%;
+        }
+
+        header nav a {
+                transition: all 0.5s ease;
+                text-align: center;
+        }
+
+        header nav a:hover {
+                transition: all 0.5s ease;
+                color: rgb(8, 115, 202);
+                font-size: 2.9rem;
+        }
+
+        img {
+                width: 300px;
+        }
+
+        #search_form {
+                width: 20%; 
+        }
+
+        #search_form button{
+                width: 20%;
+        }
+
+        #movies {
+               display: flex;
+               justify-content: space-evenly;
+               flex-wrap: wrap;
+        }
+
+        .movie_thumbnail figcaption, .movie_thumbnail img, #paging a{
+                transition: all 0.5s ease;
+        }
+
+
+        .movie_thumbnail:hover img {
+                opacity: 70%;
+                transition: all 0.5s ease;
+        }
+
+        .movie_thumbnail:hover figcaption{
+                transition: all 0.5s ease;
+                color: rgb(8, 115, 202);
+                padding-bottom: 25px;
+        }
+
+        #movie_card {
+                width: 70%;
+                margin: 135px auto 0;
+                display: flex;
+                border-radius: 2%;
+                padding: 30px;
+        }
+
+        #movie_card > div{
+                width: 70%;
+                margin: auto;
+        }
+
+        #movie_card #ratings {
+                width: 70%;
+                margin: 0 auto 30px;
+        }
+
+        #paging a:hover {
+                transition: all 0.5s ease;
+                color: rgb(20, 20, 20);
+                background: none;
+                background-color: rgb(8, 115, 202);
+        }
+}

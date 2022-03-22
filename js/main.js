@@ -34,4 +34,3 @@ pagingSection.addEventListener('click', function(e) {
                 movie.displayMovies(e.target.getAttribute('name'), moviesSection, page)
         }
 })
-

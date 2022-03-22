@@ -11,7 +11,7 @@ class Movie {
 
                 let articles = ""
 
-                fetch(`http://www.omdbapi.com/?s=${value}&page=${page}&apikey=${this.key}`)
+                fetch(`http://www.omdbapi.com/?s=${value}&type=movie&page=${page}&apikey=${this.key}`)
                 .then(function(response) {
                         if (response.ok) {
 
@@ -34,10 +34,11 @@ class Movie {
                                                 articles += `
                                                         <article class="movie_thumbnail" i=${movie["imdbID"]}>
                                                                 <a href="./movie_card.html?i=${movie["imdbID"]}">
-                        
-                                                                        <img src=${poster} alt="${movie["Title"]} poster"></img>
-                        
-                                                                        <p>${movie['Title']}</p>
+                                                                        <figure>
+                                                                                <img src=${poster} alt="${movie["Title"]} poster"></img>
+                                                                                
+                                                                                <figcaption>${movie['Title']}</figcaption>
+                                                                        </figure>
                         
                                                                 </a>
                                                         </article>
@@ -92,24 +93,29 @@ class Movie {
                                                 poster = data["Poster"]
                                         }
 
-                                        console.log(data)
-                                
                                         movieCard = `
                                                 <img src="${poster}"></img>
-                                                <h2>${data["Title"]}</h2>
                                                 <div>
-                                                        <p>genre: ${data["Genre"]}</p>
-                                                        <p>${data["Released"]}</p>
-                                                </div>
-                                                <div>
-                                                        <p>Synopsis: ${data["Plot"]}</p>
-                                                </div>
-
-                                                <div id='ratings'>
+                                                        <h2>${data["Title"]}</h2>
+                                                        <div id='ratings'>
+                                                        <div>
+                                                        <img src="./public/img/imdb-logo.png"></img>
                                                         <p>${data["imdbRating"]}</p>
+                                                        </div>
+                                                        <div>
+                                                        <img src="./public/img/metacritic-logo.png"></img>
                                                         <p>${data["Metascore"]}</p>
+                                                        </div>
+                                                        </div>
+                                                        <div id="infos">
+                                                        <p><span class="underlined_and_bold">genre:</span> ${data["Genre"]}</p>
+                                                        <p><span class="underlined_and_bold">date de sortie:</span>${data["Released"]}</p>
+                                                        </div>
+                                                        <div id="synopsis">
+                                                        <p><span class="underlined_and_bold">Synopsis:</span> ${data["Plot"]}</p>
+                                                        </div>
                                                 </div>
-                                        `
+                                                `
                                         movieSection.innerHTML = movieCard
                                 })     
                 
